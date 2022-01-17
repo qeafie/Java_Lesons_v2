@@ -1,9 +1,6 @@
 package ru.shonin.main;
 
-import ru.shonin.reflection.B;
-import ru.shonin.reflection.Line;
-import ru.shonin.reflection.Point;
-import ru.shonin.reflection.UtilityMethods;
+import ru.shonin.reflection.*;
 
 public class Main {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
@@ -19,6 +16,9 @@ public class Main {
         UtilityMethods.lineConnector(line1,line2);
         System.out.println(line1 + "\n" +  line2);
 
+        //7.1.3
+        System.out.println(new A());
+        System.out.println(b);
 
     }
 }
