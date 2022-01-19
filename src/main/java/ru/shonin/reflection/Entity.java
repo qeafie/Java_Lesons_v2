@@ -11,12 +11,12 @@ public abstract class Entity {
     public String toString() {
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(getClass());
+        String[] tempstr2 = getClass().toString().split("\\.");
+        stringBuilder.append(tempstr2[tempstr2.length-1]);
         stringBuilder.append("{");
 
         Class<? extends Entity> classEntity = getClass();
         List<Field> fields = new ArrayList<>(Arrays.asList(classEntity.getDeclaredFields()));
-
         for (Field field : fields){
 
             field.setAccessible(true);

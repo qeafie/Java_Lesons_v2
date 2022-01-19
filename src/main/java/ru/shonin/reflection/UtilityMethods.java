@@ -1,6 +1,8 @@
 package ru.shonin.reflection;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +15,7 @@ public class UtilityMethods {
         List<Field> fieldsObj = Arrays.asList(classObj.getFields());
 
         for(Field field:fieldsObj){
+            field.setAccessible(true);
             lst.add(field.getName());
         }
 
@@ -32,5 +35,19 @@ public class UtilityMethods {
     }
 
     //7.1.4
+    public static void validate(Object obj, Class<?> classObj) throws Exception {
+        List<Method> methods = new ArrayList<>(Arrays.asList(classObj.getDeclaredMethods()));
 
+        for (Method method : methods) {
+            try {
+                method.setAccessible(true);
+                method.invoke(obj);
+            } catch (ValidateException e) {
+                throw new Exception(e.getMessage());
+            } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 }
