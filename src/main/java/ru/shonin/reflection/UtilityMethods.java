@@ -17,15 +17,17 @@ public class UtilityMethods {
     public static List<String> fieldCollection(Object obj){
         List<String> lst = new ArrayList<>();
         Class<?> classObj = obj.getClass();
-        Field[] fieldsObj = classObj.getFields();
 
-        for(Field field:fieldsObj){
-            field.setAccessible(true);
-            lst.add(field.getName());
+        for(Class clazz = obj.getClass(); clazz != null; clazz = clazz.getSuperclass()){
+            for(Field field : clazz.getDeclaredFields()){
+                field.setAccessible(true);
+                lst.add(field.getName());
+            }
         }
 
         return lst;
     }
+
     //7.1.2
 
     public static void lineConnector(Line<?> line1, Line<?> line2) throws IllegalAccessException, NoSuchFieldException {
