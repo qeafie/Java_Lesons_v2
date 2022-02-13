@@ -16,7 +16,6 @@ public class UtilityMethods {
     //7.1.1
     public static List<String> fieldCollection(Object obj){
         List<String> lst = new ArrayList<>();
-        Class<?> classObj = obj.getClass();
 
         for(Class clazz = obj.getClass(); clazz != null; clazz = clazz.getSuperclass()){
             for(Field field : clazz.getDeclaredFields()){
