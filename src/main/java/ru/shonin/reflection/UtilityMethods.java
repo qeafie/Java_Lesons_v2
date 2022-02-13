@@ -21,6 +21,7 @@ public class UtilityMethods {
             for(Field field : clazz.getDeclaredFields()){
                 field.setAccessible(true);
                 lst.add(field.getName());
+                field.setAccessible(false);
             }
         }
 
@@ -38,28 +39,35 @@ public class UtilityMethods {
 
         Point point = (Point) fieldEndPoint.get(line1);
         fieldStartPoint.set(line2,point);
+
+        fieldStartPoint.setAccessible(false);
+        fieldEndPoint.setAccessible(false);
     }
 
     //7.1.4
     @Invoke
     public static void validate(Object obj, Class<?> classObj) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
         List<Method> methods = new ArrayList<>(Arrays.asList(classObj.getDeclaredMethods()));
+
+
         Constructor constructor = classObj.getConstructor();
         Object obj1 = constructor.newInstance();
-//        for (Method method : methods) {
-//            try {
-//                method.setAccessible(true);
-//                method.invoke(obj);
-//            } catch (ValidateException e) {
-//                throw new Exception(e.getMessage());
-//            } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
-        for (Method method : methods){
-            method.setAccessible(true);
-            method.invoke(obj1,obj,obj);
+        for (Method method : methods) {
+            try {
+                method.setAccessible(true);
+                method.invoke(obj1, obj);
+                method.setAccessible(false);
+            } catch (ValidateException e) {
+                throw e;
+            } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
+                e.printStackTrace();
+            }
         }
+
+//        for (Method method : methods){
+//            method.setAccessible(true);
+//            method.invoke(obj1,obj);
+//
+//        }
     }
 }

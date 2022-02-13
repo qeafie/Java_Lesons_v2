@@ -24,7 +24,7 @@ public class Main {
         //7.1.4
         Human h = new Human(750);
         System.out.println(h);
-        UtilityMethods.validate(h,HumanTests.class);
+        //UtilityMethods.validate(h,HumanTests.class);
         System.out.println("---------------");
 
     }

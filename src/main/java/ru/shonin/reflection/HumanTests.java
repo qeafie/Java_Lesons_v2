@@ -12,7 +12,7 @@ public class HumanTests {
             throw new ValidateException("возраст человека не в диапазоне от 1 до 200");}
     }
 
-    public String toString(){
-        return "test for human";
-    }
+//    public String toString(){
+//        return "test for human";
+//    }
 }
