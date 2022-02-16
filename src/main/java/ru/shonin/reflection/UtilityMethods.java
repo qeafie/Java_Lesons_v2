@@ -10,6 +10,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Default(UtilityMethods.class)
 public class UtilityMethods {
@@ -70,4 +72,43 @@ public class UtilityMethods {
 //
 //        }
     }
+
+
+
+
+    //7.3.1.
+
+    public static Map<String,Object> collect(Class<?> clazz){
+        return getMethods(clazz).stream().collect(Collectors.toMap(Method::getName, method -> invoke(method, newInstance(clazz))));
+    }
+
+    private static List<Method> getMethods(Class<?> clazz){
+        return Arrays.stream(clazz.getDeclaredMethods())
+                .filter(x-> x.isAnnotationPresent(Invoke.class))
+                .filter(x->x.getParameters().length == 0)
+                .filter(x->!x.getReturnType().equals(Void.TYPE))
+                .collect(Collectors.toList());
+    }
+
+    private static Object invoke(Method method, Object object){
+        try {
+            method.setAccessible(true);
+            return method.invoke(object);
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static Object newInstance(Class clazz) {
+        Object object = null;
+        try {
+            object = clazz.getConstructor().newInstance();
+        } catch (InvocationTargetException | InstantiationException
+                | IllegalAccessException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return object;
+    }
+
 }

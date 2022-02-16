@@ -31,7 +31,7 @@ public abstract class Entity {
             for(Field field : clazz.getDeclaredFields()){
                 field.setAccessible(true);
                 try {
-                    stringBuilder.append(field.getName()).append(" = ").append(field.get(this));
+                    stringBuilder.append(field.getName()).append("=").append(field.get(this));
                 } catch (IllegalAccessException e) {
                     System.out.println("IllegalAccessException");
                 }
