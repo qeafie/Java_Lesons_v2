@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class StudentConfig {
+
+    //лучше чтобы студент принимал по интерфейсной ссылке генератор и вызывал его метод в конктрукторе студента
     @Bean
     public Student student1(){
         return new Student(IdGenerator.next(),"petya");

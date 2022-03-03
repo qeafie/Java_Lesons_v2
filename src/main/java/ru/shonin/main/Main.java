@@ -3,12 +3,10 @@ package ru.shonin.main;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.shonin.reflection.*;
+import ru.shonin.spring.stock.Bot;
+import ru.shonin.spring.stock.Printer;
+import ru.shonin.spring.stock.Stock;
 import ru.shonin.spring.Student;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -70,5 +68,30 @@ public class Main {
         System.out.println(context.getBean("predicateBean"));
 
         System.out.println(context.getBean("bestFeedback"));
+
+
+        //17.02.2002
+
+        //приложение при запуске собирает обработчики, ждёт ввода и что-то возвращает
+        //построить метод doSomething чтобы можно было слабосвязно модифицировать программы(собирает програмы и вызывает ту на которую приходит строка)
+
+        // научиться прослушивать tcp порты
+        //следующая пара про настроийки бинов
+
+        System.out.println("----------");
+        Stock ORCLstock = new Stock("ORLC",75);
+        Stock TSLAstock  = new Stock("TSLA",696);
+
+        Printer printer = new Printer();
+        ORCLstock.addObserver(printer);
+        TSLAstock.addObserver(printer);
+
+        ORCLstock.setPrice(65);
+
+        Bot bot = new Bot();
+
+        ORCLstock.addObserver(bot);
+
+        ORCLstock.setPrice(65);
     }
 }
