@@ -1,13 +1,22 @@
 package ru.shonin.spring.stock;
 
-import java.util.*;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import java.util.*;
+@Component
+@Scope("prototype")
 public class Stock implements PublisherStock {
     private final String title;
     private int price;
 
+
     private final List<ObserverStock> observers = new ArrayList<>();
 
+    public List<ObserverStock> getObservers() {
+        return observers;
+    }
 
     public Stock(String title, int price) {
         this.title = title;

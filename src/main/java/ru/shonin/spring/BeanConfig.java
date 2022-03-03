@@ -18,6 +18,7 @@ public class BeanConfig {
     //8.1.2
     @Bean
     @Scope("prototype")
+    @Qualifier("randomInt")
     public int randomIntBean( int minBean, int maxBean){
 
         return (int) (Math.random() * maxBean) + minBean;

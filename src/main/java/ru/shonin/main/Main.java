@@ -7,6 +7,12 @@ import ru.shonin.spring.stock.Bot;
 import ru.shonin.spring.stock.Printer;
 import ru.shonin.spring.stock.Stock;
 import ru.shonin.spring.Student;
+import ru.shonin.spring.stockRobot.Robot;
+import ru.shonin.spring.stockRobot.RobotImpl;
+import ru.shonin.spring.stockRobot.SberRobot;
+import ru.shonin.spring.stockRobot.Share;
+import ru.shonin.spring.stockRobot.VTBRobot;
+import ru.shonin.spring.trafficLight.TrafficLight;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -82,9 +88,9 @@ public class Main {
         Stock ORCLstock = new Stock("ORLC",75);
         Stock TSLAstock  = new Stock("TSLA",696);
 
-        Printer printer = new Printer();
-        ORCLstock.addObserver(printer);
-        TSLAstock.addObserver(printer);
+        //Printer printer = new Printer();
+        //ORCLstock.addObserver(printer);
+        ///TSLAstock.addObserver(printer);
 
         ORCLstock.setPrice(65);
 
@@ -93,5 +99,23 @@ public class Main {
         ORCLstock.addObserver(bot);
 
         ORCLstock.setPrice(65);
+
+        System.out.println("----------");
+        context.getBeansOfType(Stock.class).entrySet().forEach(System.out::println);
+        TSLAstock.setPrice(65);
+
+        //практика 03.03.2022
+
+        Share sh1 = ((ShareBuiler)context.getBean("ShareBuilder").getShare(0.01,"sber"));
+        Share sh2 = new Share(4,"vtb");
+
+
+
+        sh2.setCost(50);
+        sh2.setCost(0.5);
+
+
+        context.
+
     }
 }
