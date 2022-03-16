@@ -1,12 +1,23 @@
 package ru.shonin.spring.trafficLight;
 
-public class Color {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+
+
+public  class Color {
     String currentColor;
     Color nextColor;
 
-    public Color (String color,Color nextColor){
-        currentColor = color;
+    public Color(String currentColor, Color nextColor) {
+        this.currentColor = currentColor;
         this.nextColor = nextColor;
+    }
+
+
+    public Color(String currentColor) {
+        this.currentColor = currentColor;
     }
 
     public String getCurrentColor() {
@@ -17,6 +28,7 @@ public class Color {
         this.currentColor = currentColor;
     }
 
+    @Autowired
     public Color getNextColor() {
         return nextColor;
     }

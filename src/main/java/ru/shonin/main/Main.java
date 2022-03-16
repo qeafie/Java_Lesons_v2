@@ -12,6 +12,7 @@ import ru.shonin.spring.stockRobot.RobotImpl;
 import ru.shonin.spring.stockRobot.SberRobot;
 import ru.shonin.spring.stockRobot.Share;
 import ru.shonin.spring.stockRobot.VTBRobot;
+import ru.shonin.spring.trafficLight.Color;
 import ru.shonin.spring.trafficLight.TrafficLight;
 
 public class Main {
@@ -101,21 +102,27 @@ public class Main {
         ORCLstock.setPrice(65);
 
         System.out.println("----------");
-        context.getBeansOfType(Stock.class).entrySet().forEach(System.out::println);
-        TSLAstock.setPrice(65);
+//        context.getBeansOfType(Stock.class).entrySet().forEach(System.out::println);
+//        TSLAstock.setPrice(65);
 
         //практика 03.03.2022
 
-        Share sh1 = ((ShareBuiler)context.getBean("ShareBuilder").getShare(0.01,"sber"));
-        Share sh2 = new Share(4,"vtb");
+//        Share sh1 = ((ShareBuiler)context.getBean("ShareBuilder").getShare(0.01,"sber"));
+//        Share sh2 = new Share(4,"vtb");
+//
+//
+//
+//        sh2.setCost(50);
+//        sh2.setCost(0.5);
+//
+//
+//        context.
+//        TrafficLight trafficLight = new TrafficLight();
+//        trafficLight.next();
+//        trafficLight.next();
+//        trafficLight.next();
+//        trafficLight.next();
 
-
-
-        sh2.setCost(50);
-        sh2.setCost(0.5);
-
-
-        context.
 
     }
 }
