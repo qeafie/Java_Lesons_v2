@@ -19,4 +19,8 @@ public class StudentConfig {
     public Student student3(){
         return new Student(IdGenerator.next(),"kolya");
     }
+    @Bean
+    public Student student4(){
+        return new Student(IdGenerator.next());
+    }
 }

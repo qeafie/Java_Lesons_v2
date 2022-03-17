@@ -62,8 +62,8 @@ public class Main {
 
         //8.1.2
 
-        System.out.println(context.getBean("randomIntBean"));
-        System.out.println(context.getBean("randomIntBean"));
+        //System.out.println(context.getBean("randomIntBean"));
+        //System.out.println(context.getBean("randomIntBean"));
         System.out.println("---------------");
 
         //8.1.3
@@ -124,5 +124,6 @@ public class Main {
 //        trafficLight.next();
 
 
+        System.out.println(context.getBeansOfType(Student.class));
     }
 }
