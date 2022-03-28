@@ -45,14 +45,14 @@ public class Main {
 
 
         //7.3.1
-        System.out.println(UtilityMethods.collect(A.class));
-        System.out.println("---------------");
+        //System.out.println(UtilityMethods.collect(A.class));
+       // System.out.println("---------------");
 
         // практика 15.02.2022
 
 
         ApplicationContext context = new AnnotationConfigApplicationContext("ru.shonin");
-        (context.getBeansOfType(Student.class)).entrySet().forEach(System.out::println);
+       // (context.getBeansOfType(Student.class)).entrySet().forEach(System.out::println);
         System.out.println("---------------");
 
 
@@ -125,5 +125,9 @@ public class Main {
 
 
         System.out.println(context.getBeansOfType(Student.class));
+
+
+        //практика 17.03.2022
+        System.out.println(new A());
     }
 }
